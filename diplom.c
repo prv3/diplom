@@ -68,15 +68,13 @@ int remove_linear_trend(float *a, int draw_before_delete){
 	
 	for(i=0; i<d.n ; i++)
 		a[i]-=m;
-	printf("canonical m=%f\n", m);
-	m=0.0;
+	printf("m=%f\n", m);
+
 	//Compute k, b coeffs
 	for(i=0;i<d.n;i++){
-		m+=a[i]; nm+=(a[i]*(i+1));
+		nm+=(a[i]*(i+1));
 	}
-	m/=d.n; nm/=(d.n*(d.n-1));
-	printf("after deleting m=%f\n", m);
-
+	nm/=(d.n*(d.n-1));
 	
 	k = 12.0*nm/(((float)d.n+1.0)*d.step_ord);
 	b = -6.0*nm;
